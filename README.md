@@ -17,6 +17,16 @@ Designed and developed by **Shivangi Gupta**, this portfolio project showcases a
 
 ---
 
+## 📊 Data Source & Acknowledgement
+
+The datasets and queries in this project are structured around standard healthcare administrative claims inspired by **CMS (Centers for Medicare & Medicaid Services) Synthetic Research Identifiable Files (RIF)**:
+* **Inpatient Claims (`inpatient.csv`):** Hospitalization stays, provider IDs, payment amounts, and non-payment reason codes.
+* **Skilled Nursing Facility (`snf.csv`):** Post-acute care tracking and transfer continuity.
+* **Beneficiary Summary (`beneficiary_2023.csv`):** Patient demographics and longitudinal data.
+* **Prescription Drug Events (`pde.csv`):** Pharmacy cost structures and medication volumes.
+
+---
+
 ## 🏗️ 4-Tier System Architecture
 
 | Tier Level | Component Name | Core Tech / Framework | Primary Function |
@@ -53,9 +63,3 @@ MedClaim-GenAI/
 │
 ├── README.md                   # Comprehensive project documentation
 └── requirements.txt            # Python package dependencies
-
-
-
-
-
-
