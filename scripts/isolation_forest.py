@@ -1,7 +1,7 @@
 # =========================================================================
-# Script: isolation_forest.py
-# Description: Implements unsupervised anomaly detection using Scikit-Learn
-#              to flag fraudulent claims and high-risk payment denials.
+# Script: scripts/isolation_forest.py
+# Description: Unsupervised anomaly detection using Scikit-Learn to flag 
+#              fraudulent claims and high-risk payment denials.
 # =========================================================================
 
 import pandas as pd
@@ -11,20 +11,16 @@ from sklearn.preprocessing import StandardScaler
 def detect_claim_anomalies(df):
     print("Initializing Isolation Forest anomaly detection model...")
     
-    # Select numeric features representing financial risk/billing volume
     feature_cols = ['CLM_PMT_AMT']
     if 'TOT_RX_CST_AMT' in df.columns:
         feature_cols.append('TOT_RX_CST_AMT')
         
     model_data = df.dropna(subset=feature_cols).copy()
-    
     if model_data.empty:
         print("Dataset contains insufficient feature rows for modeling.")
         return model_data
         
     X = model_data[feature_cols]
-    
-    # Scale features for robust distance/density calculations
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     
@@ -41,3 +37,7 @@ def detect_claim_anomalies(df):
     print(f"ML Processing Complete. Flagged {flagged_count} high-risk claims.")
     
     return model_data
+
+if __name__ == "__main__":
+    pass
+
