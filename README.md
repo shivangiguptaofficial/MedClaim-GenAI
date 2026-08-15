@@ -1,4 +1,4 @@
-# MedClaim-GenAI: Intelligent Healthcare Claims & Revenue Cycle Analytics Engine
+⁸# MedClaim-GenAI: Intelligent Healthcare Claims & Revenue Cycle Analytics Engine
 
 ![Python](https://img.shields.io/badge/Python-3.8%252B-blue.svg)
 ![SQL](https://img.shields.io/badge/SQL-SQLite%20%2F%20PostgreSQL-orange.svg)
@@ -38,28 +38,27 @@ The datasets and queries in this project are structured around standard healthca
 
 ---
 
-## 📂 Repository Structure
+## 🛠️ Tech Stack & Tools
 
-```text
-MedClaim-GenAI/
-│
-├── data/                       # Sample dataset schemas and CSV references
-│
-├── sql/                        # SQL cleaning, staging, and financial analytics queries
-│   ├── 01_data_cleaning.sql    # Data hygiene & staging views
-│   ├── 02_financial_analysis.sql # Provider billing, revenue leakage & denial metrics
-│   └── 03_clinical_and_joins.sql # Patient journey & care continuity tracking
-│
-├── scripts/                    # Core Python logic and AI execution pipelines
-│   ├── data_prep.py            # Tier 1: Automated data ingestion & cleaning
-│   ├── isolation_forest.py     # Tier 2: Unsupervised ML anomaly & fraud detection
-│   ├── genai_explainer.py      # Tier 4: LLM-powered root cause & appeal generator
-│   └── visualize_claims.py     # Exploratory data visualization (Matplotlib/Seaborn)
-│
-├── dashboard/                  # Business Intelligence layout and calculation assets
-│   ├── layout_config.json      # UI grid schema configuration
-│   ├── layout_specs.md         # UI/UX design specifications guide
-│   └── dax_measures.dax        # Core financial calculation formulas for Power BI
-│
-├── README.md                   # Comprehensive project documentation
-└── requirements.txt            # Python package dependencies
+This project leverages an industry-standard modern technology stack spanning across multiple data and AI domains:
+
+| Domain Category | Core Technologies & Frameworks | Primary Application |
+| :--- | :--- | :--- |
+| **Database & Query** | SQL, SQLite, DB Browser for SQLite | Storing, querying, and managing relational healthcare datasets. |
+| **Data Engineering** | Python, Pandas, NumPy, CSV Parser | Ingesting, cleaning, and formatting pipe-delimited raw claims data. |
+| **Machine Learning** | Scikit-Learn (`Isolation Forest`, `StandardScaler`) | Unsupervised anomaly detection for fraud and payment outlier isolation. |
+| **Generative AI** | OpenAI API (`gpt-3.5-turbo-instruct`), LangChain | Parsing denial codes and automating insurance appeal letter generation. |
+| **Business Intelligence** | Power BI Desktop, DAX Measures, Tableau | Building executive RCM dashboards and financial performance KPIs. |
+| **Domain Expertise** | Healthcare Insurance, RCM, Denial Management | Handling Medicare non-payment codes and tracking care continuity. |
+
+---
+
+## 🚀 Step-by-Step Execution Guide
+
+Follow these instructions to set up, run, and execute the complete analytics and AI pipeline locally:
+
+### Step 1: Environment & Database Setup
+1. Clone this repository to your local machine:
+   ```bash
+   git clone [https://github.com/shivangiguptaofficial/MedClaim-GenAI.git](https://github.com/shivangiguptaofficial/MedClaim-GenAI.git)
+   cd MedClaim-GenAI
