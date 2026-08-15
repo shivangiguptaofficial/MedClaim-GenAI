@@ -1,0 +1,19 @@
+-- =========================================================================
+-- Power BI DAX Measures Template (dashboard/dax_measures.dax)
+-- Description: Core financial and denial tracking formulas for Power BI Model
+-- =========================================================================
+
+-- 1. Total Billed Amount Across All Claims
+Total_Billed_Amount = SUM(Claims[CLM_BLLD_AMT])
+
+-- 2. Total Actual Revenue Collected (Payments Received)
+Total_Revenue_Collected = SUM(Claims[CLM_PMT_AMT])
+
+-- 3. Revenue at Risk (Financial Impact of Denied / Non-Paid Claims)
+Revenue_At_Risk = CALCULATE(
+    SUM(Claims[CLM_PMT_AMT]), 
+    Claims[CLM_MDCR_NON_PMT_RSN_CD] <> "" && NOT(ISBLANK(Claims[CLM_MDCR_NON_PMT_RSN_CD]))
+)
+
+-- 4. Denial Rate Percentage
+Denial_Rate_Pct = DIVIDE([Revenue_At_Risk], [Total_Billed_Amount], 0) * 100
