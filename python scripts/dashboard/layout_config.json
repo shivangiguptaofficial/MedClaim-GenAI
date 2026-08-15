@@ -1,0 +1,110 @@
+{
+  "dashboard_metadata": {
+    "title": "Healthcare Claims & Revenue Cycle Management Analytics",
+    "version": "1.0.0",
+    "target_platform": "Power BI Desktop / Web Service",
+    "canvas_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "color_palette": {
+      "primary_brand": "#1F4E78",
+      "accent_alert": "#C00000",
+      "neutral_background": "#F2F2F2",
+      "card_background": "#FFFFFF",
+      "text_primary": "#262626"
+    }
+  },
+  "layout_grid": {
+    "rows": 3,
+    "columns": 12,
+    "containers": [
+      {
+        "id": "header_container",
+        "grid_position": { "row": 1, "col_start": 1, "col_span": 12 },
+        "height_px": 80,
+        "components": [
+          {
+            "type": "title_banner",
+            "title_text": "Executive RCM & Claims Denial Intelligence",
+            "subtitle_text": "Real-time tracking of billing volume, provider leakage, and Medicare non-payment risks"
+          }
+        ]
+      },
+      {
+        "id": "kpi_row_container",
+        "grid_position": { "row": 2, "col_start": 1, "col_span": 12 },
+        "height_px": 120,
+        "components": [
+          {
+            "card_id": "kpi_billed",
+            "title": "Total Billed Amount",
+            "measure": "[Total_Billed_Amount]",
+            "format": "$#,##0",
+            "col_span": 3
+          },
+          {
+            "card_id": "kpi_collected",
+            "title": "Total Revenue Collected",
+            "measure": "[Total_Revenue_Collected]",
+            "format": "$#,##0",
+            "col_span": 3
+          },
+          {
+            "card_id": "kpi_at_risk",
+            "title": "Revenue at Risk",
+            "measure": "[Revenue_At_Risk]",
+            "format": "$#,##0",
+            "conditional_formatting": "alert_red",
+            "col_span": 3
+          },
+          {
+            "card_id": "kpi_denial_rate",
+            "title": "Overall Denial Rate",
+            "measure": "[Denial_Rate_Pct]",
+            "format": "0.0%",
+            "col_span": 3
+          }
+        ]
+      },
+      {
+        "id": "visuals_row_container",
+        "grid_position": { "row": 3, "col_start": 1, "col_span": 12 },
+        "height_px": 480,
+        "components": [
+          {
+            "visual_id": "vis_donut_denials",
+            "type": "Donut Chart",
+            "title": "Denial Breakdown by Reason Code",
+            "field_mappings": {
+              "legend": "Claims[CLM_MDCR_NON_PMT_RSN_CD]",
+              "values": "[Revenue_At_Risk]"
+            },
+            "col_span": 4
+          },
+          {
+            "visual_id": "vis_line_trends",
+            "type": "Dual-Axis Line & Column Chart",
+            "title": "Monthly Claim Volume vs. Denial Trends",
+            "field_mappings": {
+              "shared_axis": "Claims[CLM_FROM_DT]",
+              "columns": "COUNT(Claims[CLM_ID])",
+              "line": "[Denial_Rate_Pct]"
+            },
+            "col_span": 4
+          },
+          {
+            "visual_id": "vis_bar_providers",
+            "type": "Horizontal Bar Chart",
+            "title": "Top 10 High-Cost Provider Leakage",
+            "field_mappings": {
+              "axis": "Claims[PRVDR_NUM]",
+              "values": "[Revenue_At_Risk]"
+            },
+            "col_span": 4
+          }
+        ]
+      }
+    ]
+  }
+}
