@@ -1,6 +1,6 @@
 # =========================================================================
-# Script: genai_explainer.py
-# Description: Uses LangChain and OpenAI LLM API to summarize root causes 
+# Script: scripts/genai_explainer.py
+# Description: Uses LangChain and OpenAI LLM API to summarize root causes
 #              and draft formal insurance appeal justifications for flagged claims.
 # =========================================================================
 
@@ -35,7 +35,6 @@ def generate_appeal_documentation(claim_id, denial_code, billed_amount, provider
     )
     
     chain = LLMChain(llm=llm, prompt=prompt)
-    
     response = chain.run({
         "claim_id": claim_id,
         "provider_id": provider_id,
@@ -46,7 +45,5 @@ def generate_appeal_documentation(claim_id, denial_code, billed_amount, provider
     return response
 
 if __name__ == "__main__":
-    # Example execution template
-    # appeal_text = generate_appeal_documentation("CLM992810", "CO-50", 14500.00, "PRV1092")
-    # print(appeal_text)
     pass
+
