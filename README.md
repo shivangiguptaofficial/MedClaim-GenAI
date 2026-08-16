@@ -62,3 +62,24 @@ Follow these instructions to set up, run, and execute the complete analytics and
    ```bash
    git clone [https://github.com/shivangiguptaofficial/MedClaim-GenAI.git](https://github.com/shivangiguptaofficial/MedClaim-GenAI.git)
    cd MedClaim-GenAI
+2. Install the required Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+3. Open DB Browser for SQLite, create a new database file named `healthcare_claims.db`, and import your CMS synthetic CSV datasets using `|` (pipe) as the field separator.
+### Step 2: Execute SQL Staging & Financial Queries
+Run the analytical SQL scripts in the `sql/` directory sequentially using your database client:
+* **`01_data_cleaning.sql`**: Cleans raw headers, drops null identifiers, and filters out negative payment anomalies.
+* **`02_financial_analysis.sql`**: Aggregates top billing providers and calculates revenue leakage metrics based on denial codes.
+* **`03_clinical_and_joins.sql`**: Executes multi-table relational joins to map longitudinal patient journeys across acute and post-acute settings.
+
+### Step 3: Run Python ML & Generative AI Pipelines
+Execute the core automation and machine learning scripts from your terminal or IDE:
+```bash
+# Run data preprocessing and cleaning pipeline
+python scripts/data_prep.py
+
+# Run unsupervised anomaly detection for fraudulent claim isolation
+python scripts/isolation_forest.py
+
+# Run GenAI script to process denials and draft appeal documents
+python scripts/genai_explainer.py
