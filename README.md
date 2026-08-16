@@ -62,8 +62,11 @@ Follow these instructions to set up, run, and execute the complete analytics and
 ### Step 1: Environment & Database Setup
 1. Clone this repository to your local machine:
    ```bash
-   git clone [https://github.com/shivangiguptaofficial/MedClaim-GenAI.git] 
-cd MedClaim-GenAI
+   git clone [https://github.com/shivangiguptaofficial/MedClaim-GenAI.git] cd MedClaim-GenAI
+2. Configure your local environment variables:
+   Create a `.env` file in the root directory for the GenAI appeal generator:
+   ```env
+   OPENAI_API_KEY=your_openai_api_key_here
 
 2. Install the required Python dependencies:
    ```bash
