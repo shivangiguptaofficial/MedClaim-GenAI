@@ -53,6 +53,23 @@ This project leverages an industry-standard modern technology stack spanning acr
 
 ---
 
+## 📊 Dashboard & Visual Preview
+
+Explore the multi-tier analytics outputs generated across the executive Power BI dashboard, Python exploratory data visualizations, and the automated GenAI pipeline:
+
+| **Executive Power BI Widescreen Dashboard (1280x720)** | **Exploratory Data Analysis (Matplotlib / Seaborn)** |
+| :---: | :---: |
+| ![Dashboard Preview](./assets/dashboard_preview.png) | ![Visuals Preview](./assets/visuals_preview.png) |
+| *Interactive RCM KPIs, Donut Denial Breakdown, & Top-10 Provider Leakage Analysis.* | *Automated programmatic plots tracking monthly claim trends and payment distributions.* |
+
+| **GenAI Automated Appeal Generator (LangChain & OpenAI)** |
+| :---: |
+| ![GenAI Appeal Preview](./assets/genai_preview.png) |
+| *Automated root-cause analysis and professional policy-appropriate insurance appeal drafts.* |
+
+---
+
+
 ## 📈 Power BI & DAX Financial Engine
 
 The dashboard utilizes a production-grade semantic data model driven by advanced DAX measures stored in `dashboard/dax_measures.dax`. Below are the core enterprise revenue cycle management (RCM) metrics implemented in the model:
