@@ -1,19 +1,59 @@
--- =========================================================================
+-- ==============================================================================
 -- Power BI DAX Measures Template (dashboard/dax_measures.dax)
 -- Description: Core financial and denial tracking formulas for Power BI Model
--- =========================================================================
+-- Project: MedClaim-GenAI
+--
+-- NOTE ON FIELD NAMES: The CMS Synthetic RIF claims files do not contain a
+-- field named CLM_BLLD_AMT. The correct billed/submitted charge field is
+-- CLM_TOT_CHRG_AMT. Measures below use the verified CMS RIF column names.
+-- ==============================================================================
 
 -- 1. Total Billed Amount Across All Claims
-Total_Billed_Amount = SUM(Claims[CLM_BLLD_AMT])
+Total_Billed_Amount = SUM(Claims[CLM_TOT_CHRG_AMT])
 
 -- 2. Total Actual Revenue Collected (Payments Received)
 Total_Revenue_Collected = SUM(Claims[CLM_PMT_AMT])
 
 -- 3. Revenue at Risk (Financial Impact of Denied / Non-Paid Claims)
 Revenue_At_Risk = CALCULATE(
-    SUM(Claims[CLM_PMT_AMT]), 
+    SUM(Claims[CLM_PMT_AMT]),
     Claims[CLM_MDCR_NON_PMT_RSN_CD] <> "" && NOT(ISBLANK(Claims[CLM_MDCR_NON_PMT_RSN_CD]))
 )
 
 -- 4. Denial Rate Percentage
 Denial_Rate_Pct = DIVIDE([Revenue_At_Risk], [Total_Billed_Amount], 0) * 100
+
+-- 5. Revenue Gap (Billed vs. Paid Variance) â€” surfaces underpayment leakage
+Revenue_Gap = [Total_Billed_Amount] - [Total_Revenue_Collected]
+
+-- 6. Denied Claim Count
+Denied_Claim_Count = CALCULATE(
+    COUNTROWS(Claims),
+    Claims[CLM_MDCR_NON_PMT_RSN_CD] <> "" && NOT(ISBLANK(Claims[CLM_MDCR_NON_PMT_RSN_CD]))
+)
+
+-- 7. Total Claim Count
+Total_Claim_Count = COUNTROWS(Claims)
+
+-- 8. Average Payment per Claim
+Avg_Payment_Per_Claim = DIVIDE([Total_Revenue_Collected], [Total_Claim_Count], 0)
+
+-- 9. Top Provider Leakage Rank (used for the Top-10 Provider bar chart)
+Provider_Revenue_At_Risk_Rank =
+    RANKX(
+        ALL(Claims[PRVDR_NUM]),
+        CALCULATE([Revenue_At_Risk]),
+        ,
+        DESC
+    )
+
+-- 10. Month-over-Month Claim Volume Trend (for the dual-axis line chart)
+MoM_Claim_Volume_Change =
+    VAR CurrentMonthVolume = [Total_Claim_Count]
+    VAR PriorMonthVolume =
+        CALCULATE(
+            [Total_Claim_Count],
+            DATEADD(Claims[CLM_FROM_DT], -1, MONTH)
+        )
+    RETURN
+        DIVIDE(CurrentMonthVolume - PriorMonthVolume, PriorMonthVolume, 0)
