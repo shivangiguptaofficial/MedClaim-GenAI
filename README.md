@@ -53,7 +53,25 @@ This project leverages an industry-standard modern technology stack spanning acr
 
 ---
 
+## 📈 Power BI & DAX Financial Engine
 
+The dashboard utilizes a production-grade semantic data model driven by advanced DAX measures stored in `dashboard/dax_measures.dax`. Below are the core enterprise revenue cycle management (RCM) metrics implemented in the model:
+
+| Metric Name | DAX Expression / Measure Reference | Business Purpose |
+| :--- | :--- | :--- |
+| **Total Billed Amount** | `SUM(Claims[CLM_BLD_AMT])` | Aggregates total submitted charges across all institutional claims. |
+| **Revenue Gap** | `[Total_Billed_Amount] - [Total_Revenue_Collected]` | Surfaces underpayment leakage between billed amounts and actual cash collections. |
+| **Revenue at Risk** | `CALCULATE(SUM(Claims[CLM_PWT_AMT]), Claims[CLM_MDCR_NON_PMT_RSN_CD] <> "" && ...)` | Quantifies the financial impact and exposure of denied or non-paid claims. |
+| **Denial Rate Percentage** | `DIVIDE([Revenue_At_Risk], [Total_Billed_Amount], 0) * 100` | Tracks financial risk exposure relative to total billing volume. |
+| **Provider Leakage Rank** | `RANKX(ALL(Claims[PRVDR_NUM]), CALCULATE([Revenue_At_Risk]), , DESC)` | Isolates top-10 high-loss institutional providers (`PRVDR_NUM`) for executive audit. |
+
+### 🧮 Core Financial Equations
+
+$$\text{Revenue\_Gap} = \text{Total\_Billed\_Amount} - \text{Total\_Revenue\_Collected}$$
+
+$$\text{Denial\_Rate} = \frac{\text{Revenue\_At\_Risk}}{\text{Total\_Billed\_Amount}} \times 100$$
+
+---
 
 ## 🚀 Step-by-Step Execution Guide
 
