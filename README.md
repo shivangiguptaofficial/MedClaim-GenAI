@@ -53,18 +53,6 @@ This project leverages an industry-standard modern technology stack spanning acr
 
 ---
 
-## 💡 Key Analytics & Insights Covered
-
-* **Revenue Leakage Identification:** Quantifies financial impact across specific Medicare non-payment reason codes (`CLM_MDCR_NON_PMT_RSN_CD`). 
-* **Provider Risk Profiling:** Identifies top high-cost billing hospitals and medical outliers.
-* **Continuity of Care Tracking:** Traces patient movement across acute care and post-acute settings within statutory 30-day windows.
-* **Automated Appeal Documentation:** Accelerates back-office RCM processing by instantly drafting customized appeal justification packets for denied claims via GenAI.
-
----
-
-## 👤 Author
-
-Developed by **Shivangi Gupta** as part of an advanced Data Analytics & Business Intelligence portfolio.
 
 
 ## 🚀 Step-by-Step Execution Guide
@@ -74,7 +62,7 @@ Follow these instructions to set up, run, and execute the complete analytics and
 ### Step 1: Environment & Database Setup
 1. Clone this repository to your local machine:
    ```bash
-   git clone [https://github.com/shivangiguptaofficial/MedClaim-GenAI.git](https://github.com/shivangiguptaofficial/MedClaim-GenAI.git)
+   git clone [https://github.com/shivangiguptaofficial/MedClaim-GenAI.git] 
 cd MedClaim-GenAI
 
 2. Install the required Python dependencies:
@@ -89,41 +77,45 @@ Run the analytical SQL scripts in the `sql/` directory sequentially using your d
 
 ### Step 3: Run Python ML & Generative AI Pipelines
 Execute the core automation and machine learning scripts from your terminal or IDE:
-```bash
-# Run data preprocessing and cleaning pipeline
-python scripts/data_prep.py
-
-# Run unsupervised anomaly detection for fraudulent claim isolation
-python scripts/isolation_forest.py
-
-# Run GenAI script to process denials and draft appeal documents
-python scripts/genai_explainer.py
+* **`data_prep.py`**: Runs data preprocessing, cleaning pipelines, and standardizes raw datasets for modeling.
+* **`isolation_forest.py`**: Executes unsupervised anomaly detection to isolate fraudulent claims and payment outliers.
+* **`visualize_claims.py`**: Generates exploratory data visualizations (Matplotlib/Seaborn) for performance metrics.
+* **`genai_explainer.py`**: Integrates with LLMs to process denial codes and draft automated insurance appeal documents.
 
 ---
 
 ## 📂 Repository Structure
 
-```text
-MedClaim-GenAI/
-│
-├── data/                       # Sample dataset schemas and CSV references
-│
-├── sql/                        # SQL cleaning, staging, and financial analytics queries
-│   ├── 01_data_cleaning.sql    # Data hygiene & staging views
-│   ├── 02_financial_analysis.sql # Provider billing, revenue leakage & denial metrics
-│   └── 03_clinical_and_joins.sql # Patient journey & care continuity tracking
-│
-├── scripts/                    # Core Python logic and AI execution pipelines
-│   ├── data_prep.py            # Tier 1: Automated data ingestion & cleaning
-│   ├── isolation_forest.py     # Tier 2: Unsupervised ML anomaly & fraud detection
-│   ├── genai_explainer.py      # Tier 4: LLM-powered root cause & appeal generator
-│   └── visualize_claims.py     # Exploratory data visualization (Matplotlib/Seaborn)
-│
-├── dashboard/                  # Business Intelligence layout and calculation assets
-│   ├── layout_config.json      # UI grid schema configuration
-│   ├── layout_specs.md         # UI/UX design specifications guide
-│   └── dax_measures.dax        # Core financial calculation formulas for Power BI
-│
-├── README.md                   # Comprehensive project documentation
-└── requirements.txt            # Python package dependencies
+The project files and directories are organized as follows:
 
+* **`data/`**: Contains sample dataset schemas and CSV references for claims analysis.
+* **`sql/`**: Houses SQL scripts for data staging, cleaning, and financial analytics:
+  * **`01_data_cleaning.sql`**: Handles data hygiene, raw header cleaning, and staging views.
+  * **`02_financial_analysis.sql`**: Computes provider billing aggregations, revenue leakage, and denial metrics.
+  * **`03_clinical_and_joins.sql`**: Executes multi-table relational joins for patient journey and care continuity tracking.
+* **`scripts/`**: Core Python automation, machine learning, and AI execution pipelines:
+  * **`data_prep.py`**: Tier 1 data ingestion and cleaning pipeline.
+  * **`isolation_forest.py`**: Tier 2 unsupervised anomaly detection model for fraud isolation.
+  * **`visualize_claims.py`**: Generates exploratory data visualizations (Matplotlib/Seaborn).
+  * **`genai_explainer.py`**: Tier 4 LLM-powered root cause and automated appeal letter generator.
+* **`dashboard/`**: Business Intelligence layout assets and formulas:
+  * **`layout_config.json`**: UI grid schema configuration.
+  * **`layout_specs.md`**: UI/UX design specifications guide.
+  * **`dax_measures.dax`**: Core financial calculation formulas for Power BI dashboards.
+* **`requirements.txt`**: Lists all required Python package dependencies.
+* **`README.md`**: Comprehensive documentation of the project.
+
+---
+
+## 💡 Key Analytics & Insights Covered
+
+* **Revenue Leakage Identification:** Quantifies financial impact across specific Medicare non-payment reason codes (`CLM_MDCR_NON_PMT_RSN_CD`). 
+* **Provider Risk Profiling:** Identifies top high-cost billing hospitals and medical outliers.
+* **Continuity of Care Tracking:** Traces patient movement across acute care and post-acute settings within statutory 30-day windows.
+* **Automated Appeal Documentation:** Accelerates back-office RCM processing by instantly drafting customized appeal justification packets for denied claims via GenAI.
+
+---
+
+## 👤 Author
+
+Developed by **Shivangi Gupta** as part of an advanced Data Analytics & Business Intelligence portfolio.
