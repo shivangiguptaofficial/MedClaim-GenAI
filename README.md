@@ -53,6 +53,20 @@ This project leverages an industry-standard modern technology stack spanning acr
 
 ---
 
+## 💡 Key Analytics & Insights Covered
+
+* **Revenue Leakage Identification:** Quantifies financial impact across specific Medicare non-payment reason codes (`CLM_MDCR_NON_PMT_RSN_CD`). 
+* **Provider Risk Profiling:** Identifies top high-cost billing hospitals and medical outliers.
+* **Continuity of Care Tracking:** Traces patient movement across acute care and post-acute settings within statutory 30-day windows.
+* **Automated Appeal Documentation:** Accelerates back-office RCM processing by instantly drafting customized appeal justification packets for denied claims via GenAI.
+
+---
+
+## 👤 Author
+
+Developed by **Shivangi Gupta** as part of an advanced Data Analytics & Business Intelligence portfolio.
+
+
 ## 🚀 Step-by-Step Execution Guide
 
 Follow these instructions to set up, run, and execute the complete analytics and AI pipeline locally:
@@ -83,3 +97,31 @@ python scripts/isolation_forest.py
 
 # Run GenAI script to process denials and draft appeal documents
 python scripts/genai_explainer.py
+
+---
+
+## 📂 Repository Structure
+
+```text
+MedClaim-GenAI/
+│
+├── data/                       # Sample dataset schemas and CSV references
+│
+├── sql/                        # SQL cleaning, staging, and financial analytics queries
+│   ├── 01_data_cleaning.sql    # Data hygiene & staging views
+│   ├── 02_financial_analysis.sql # Provider billing, revenue leakage & denial metrics
+│   └── 03_clinical_and_joins.sql # Patient journey & care continuity tracking
+│
+├── scripts/                    # Core Python logic and AI execution pipelines
+│   ├── data_prep.py            # Tier 1: Automated data ingestion & cleaning
+│   ├── isolation_forest.py     # Tier 2: Unsupervised ML anomaly & fraud detection
+│   ├── genai_explainer.py      # Tier 4: LLM-powered root cause & appeal generator
+│   └── visualize_claims.py     # Exploratory data visualization (Matplotlib/Seaborn)
+│
+├── dashboard/                  # Business Intelligence layout and calculation assets
+│   ├── layout_config.json      # UI grid schema configuration
+│   ├── layout_specs.md         # UI/UX design specifications guide
+│   └── dax_measures.dax        # Core financial calculation formulas for Power BI
+│
+├── README.md                   # Comprehensive project documentation
+└── requirements.txt            # Python package dependencies
