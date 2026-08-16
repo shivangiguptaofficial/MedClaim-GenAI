@@ -75,7 +75,8 @@ Follow these instructions to set up, run, and execute the complete analytics and
 1. Clone this repository to your local machine:
    ```bash
    git clone [https://github.com/shivangiguptaofficial/MedClaim-GenAI.git](https://github.com/shivangiguptaofficial/MedClaim-GenAI.git)
-   cd MedClaim-GenAI
+cd MedClaim-GenAI
+
 2. Install the required Python dependencies:
    ```bash
    pip install -r requirements.txt
