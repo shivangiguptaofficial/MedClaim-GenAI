@@ -82,7 +82,8 @@ The dashboard utilizes a production-grade semantic data model driven by advanced
 | **Denial Rate Percentage** | `DIVIDE([Revenue_At_Risk], [Total_Billed_Amount], 0) * 100` | Tracks financial risk exposure relative to total billing volume. |
 | **Provider Leakage Rank** | `RANKX(ALL(Claims[PRVDR_NUM]), CALCULATE([Revenue_At_Risk]), , DESC)` | Isolates top-10 high-loss institutional providers (`PRVDR_NUM`) for executive audit. |
 
-### 🧮 Core Financial Equations
+
+## 📐 Core Financial Equations
 
 $$\text{Revenue\_Gap} = \text{Total\_Billed\_Amount} - \text{Total\_Revenue\_Collected}$$
 
@@ -122,26 +123,29 @@ Execute the core automation and machine learning scripts from your terminal or I
 
 ---
 
-## 📂 Repository Structure
+## 📂 Architecture Breakdown
 
-The project files and directories are organized as follows:
+### 📊 Dashboard & UI Layer (`/dashboard`)
+* **`dax_measures.dax`** — Production-grade DAX expressions for financial analytics.
+* **`layout_config.json`** — JSON schema defining widescreen container layouts.
+* **`layout_specs.md`** — Design system specifications ensuring clinical aesthetic standards.
 
-* **`data/`**: Contains sample dataset schemas and CSV references for claims analysis.
-* **`sql/`**: Houses SQL scripts for data staging, cleaning, and financial analytics:
-  * **`01_data_cleaning.sql`**: Handles data hygiene, raw header cleaning, and staging views.
-  * **`02_financial_analysis.sql`**: Computes provider billing aggregations, revenue leakage, and denial metrics.
-  * **`03_clinical_and_joins.sql`**: Executes multi-table relational joins for patient journey and care continuity tracking.
-* **`scripts/`**: Core Python automation, machine learning, and AI execution pipelines:
-  * **`data_prep.py`**: Tier 1 data ingestion and cleaning pipeline.
-  * **`isolation_forest.py`**: Tier 2 unsupervised anomaly detection model for fraud isolation.
-  * **`visualize_claims.py`**: Generates exploratory data visualizations (Matplotlib/Seaborn).
-  * **`genai_explainer.py`**: Tier 4 LLM-powered root cause and automated appeal letter generator.
-* **`dashboard/`**: Business Intelligence layout assets and formulas:
-  * **`layout_config.json`**: UI grid schema configuration.
-  * **`layout_specs.md`**: UI/UX design specifications guide.
-  * **`dax_measures.dax`**: Core financial calculation formulas for Power BI dashboards.
-* **`requirements.txt`**: Lists all required Python package dependencies.
-* **`README.md`**: Comprehensive documentation of the project.
+### ⚙️ Automation, ML & AI Pipelines (`/scripts`)
+* **`data_prep.py`** — Cleans multi-gigabyte raw files and handles missing records.
+* **`isolation_forest.py`** — Unsupervised machine learning model for payment outlier detection.
+* **`visualize_claims.py`** — Automated chart generation for trend tracking.
+* **`genai_explainer.py`** — LLM-powered engine drafting professional insurance appeal packets.
+
+### 🛢️ Relational Analytics (`/sql`)
+* **`01_data_cleaning.sql`** — Database hygiene and view setup.
+* **`02_financial_analysis.sql`** — Computes financial exposure and provider leakage metrics.
+* **`03_clinical_and_joins.sql`** — Tracks patient care continuity across acute settings.
+
+### 📦 Root & Data Assets
+* **`data/`** — Medicare CMS RIF claims repository container.
+* **`.env.example`** — Environment variable configuration file.
+* **`requirements.txt`** — Project environment dependencies.
+
 
 ---
 
