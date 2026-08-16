@@ -83,11 +83,15 @@ The dashboard utilizes a production-grade semantic data model driven by advanced
 | **Provider Leakage Rank** | `RANKX(ALL(Claims[PRVDR_NUM]), CALCULATE([Revenue_At_Risk]), , DESC)` | Isolates top-10 high-loss institutional providers (`PRVDR_NUM`) for executive audit. |
 
 
+---
+
 ## 📐 Core Financial Equations
 
-$$\text{Revenue\_Gap} = \text{Total\_Billed\_Amount} - \text{Total\_Revenue\_Collected}$$
+**1. Revenue Gap Calculation:**
+`Revenue_Gap = Total_Billed_Amount - Total_Revenue_Collected`
 
-$$\text{Denial\_Rate} = \frac{\text{Revenue\_At\_Risk}}{\text{Total\_Billed\_Amount}} \times 100$$
+**2. Denial Rate Percentage:**
+`Denial_Rate = (Revenue_At_Risk / Total_Billed_Amount) * 100`
 
 ---
 
